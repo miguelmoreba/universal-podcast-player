@@ -1,10 +1,28 @@
-<input type="text" [formControl]="link">
-<audio controls [src]="link.value">
-        Your browser does not support the
-        <code>audio</code> element.
-</audio>
 
-<br>
-<button (click)="onButtonClick()">
+<div style="margin-top: 20px;">
+        Url
+        <input type="text" [formControl]="link">
+        <button (click)="onUrlButtonClick()">
+                Download
+        </button>
+</div>
 
-</button>
+<div style="margin-top: 20px;">
+        <audio controls [src]="link.value">
+                Your browser does not support the
+                <code>audio</code> element.
+        </audio>
+</div>
+
+<div style="margin-top: 20px;"> 
+        <input type="file" (change)="onInputChange($event)">
+        <button >
+                Local
+        </button>
+</div>
+<div style="margin-top: 20px;">
+        <audio controls [src]="local_url">
+                Your browser does not support the
+                <code>audio</code> element.
+        </audio>
+</div>
