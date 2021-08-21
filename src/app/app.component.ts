@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ScraperService } from './scraper.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent {
 
   constructor(
     private httpClient: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private scraperService: ScraperService
     ) { }
 
   title = 'ng-audio-cutter';
@@ -20,7 +22,7 @@ export class AppComponent {
   local_url: any
 
 
-  async onUrlButtonClick() {
+  onUrlButtonClick() {
 
     this.httpClient.get(this.link.value, { responseType: 'blob' })
       .subscribe(response => {
@@ -38,7 +40,6 @@ export class AppComponent {
 
   onInputChange(myEvent: any) {
     if (myEvent.target.files && myEvent.target.files[0]) {
-      console.log("heoihjfasdkljhf")
       let file = myEvent.target.files[0];
       let fr = new FileReader();
       console.log("I get to here too")
