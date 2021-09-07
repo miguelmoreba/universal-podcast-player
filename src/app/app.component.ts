@@ -15,16 +15,16 @@ export class AppComponent {
     private httpClient: HttpClient,
     private sanitizer: DomSanitizer,
     private scraperService: ScraperService
-    ) { }
+  ) { }
 
   title = 'ng-audio-cutter';
-  link = new FormControl("")
+  link = ""
   local_url: any
 
 
   onUrlButtonClick() {
 
-    this.httpClient.get(this.link.value, { responseType: 'blob' })
+    this.httpClient.get(this.link, { responseType: 'blob' })
       .subscribe(response => {
         const a = document.createElement("a");
         document.body.appendChild(a);
@@ -35,7 +35,16 @@ export class AppComponent {
         a.click();
         window.URL.revokeObjectURL(url);
       }
-    );
+      );
+  }
+
+  onUrlInput(myEvent: any) {
+    console.log(myEvent.target.value)
+    const myUrl: string = myEvent.target.value;
+    this.scraperService.parse_episode_url(myUrl)
+      .subscribe(data => {
+        this.link = data
+      });
   }
 
   onInputChange(myEvent: any) {
