@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as cheerio from 'cheerio';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 
 @Injectable({
@@ -12,36 +14,38 @@ export class ScraperService {
 
   }
 
-  parse_episode_url(url: string){
-    if (url.includes("pca.st")){
+  parse_episode_url(url: string): Observable<string> {
+    if (url.includes("pca.st")) {
       return this.get_episode_url_from_pocket_casts(url)
-    } else if (url.includes("podcasts.apple")){
+    } else if (url.includes("podcasts.apple")) {
       return this.get_episode_url_from_itunes(url)
     }
-
+    return of(url)
   }
 
-  get_episode_url_from_pocket_casts(url: string) {
-    this.httpClient.get(url)
-      .subscribe(response => {
-        const $ = cheerio.load((<any>response).data)
+  get_episode_url_from_pocket_casts(url: string): Observable<string> {
+    return this.httpClient.get(url, { responseType: 'text' })
+      .pipe(map((response: any) => {
+        const $ = cheerio.load(response);
 
-        const myLink = $('#audio_player').get()[0].attribs.src
+        const myLink = $('#audio_player').get()[0].attribs.src;
 
-        return myLink
-      })
+        return myLink;
+      }));
   }
 
-  get_episode_url_from_itunes(url: string){
-    this.httpClient.get(url)
-      .subscribe(response => {
-        const $ = cheerio.load((<any>response).data)
+  get_episode_url_from_itunes(url: string): Observable<string> {
+    return this.httpClient.get(url, { responseType: 'text' })
+      .pipe(map((response: any) => {
 
-        const myLink = (<any>$('#shoebox-ember-data-store').get()[0].children[0]).data
+        console.log(response)
+        const $ = cheerio.load(response);
 
-        const parsed = JSON.parse(myLink)
+        const myLink = (<any>$('#shoebox-ember-data-store').get()[0].children[0]).data;
 
-        return (<any>Object.values(parsed)[0]).data.attributes.assetUrl
-      })
+        const parsed = JSON.parse(myLink);
+
+        return (<any>Object.values(parsed)[0]).data.attributes.assetUrl;
+      }))
   }
 }
