@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalFileComponent } from './local-file/local-file.component';
 import { PodcastUrlComponent } from './podcast-url/podcast-url.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocalFileComponent,
-    PodcastUrlComponent
+    PodcastUrlComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
