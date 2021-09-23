@@ -14,15 +14,4 @@
         </audio>
 </div>
 
-<div style="margin-top: 20px;"> 
-        <input type="file" (change)="onInputChange($event)">
-        <button >
-                Local
-        </button>
-</div>
-<div style="margin-top: 20px;">
-        <audio controls [src]="local_url">
-                Your browser does not support the
-                <code>audio</code> element.
-        </audio>
-</div>
+<app-local-file></app-local-file>

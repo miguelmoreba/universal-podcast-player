@@ -5,10 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LocalFileComponent } from './local-file/local-file.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LocalFileComponent
   ],
   imports: [
     BrowserModule,
