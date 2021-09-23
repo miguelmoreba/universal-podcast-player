@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ScraperService } from './scraper.service';
+import { ScraperService } from './services/scraper.service';
 
 @Component({
   selector: 'app-root',
