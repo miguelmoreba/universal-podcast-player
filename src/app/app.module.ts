@@ -6,11 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalFileComponent } from './local-file/local-file.component';
+import { PodcastUrlComponent } from './podcast-url/podcast-url.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocalFileComponent
+    LocalFileComponent,
+    PodcastUrlComponent
   ],
   imports: [
     BrowserModule,
