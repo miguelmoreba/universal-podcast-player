@@ -16,6 +16,8 @@ export class PodcastUrlComponent {
 
   title = 'ng-audio-cutter';
   link = ""
+  start= ''
+  end = ''
 
   onUrlButtonClick() {
 
@@ -40,6 +42,21 @@ export class PodcastUrlComponent {
       .subscribe(data => {
         this.link = data
       });
+  }
+
+  timeUpdate(myEvent: any) {
+    console.log(myEvent)
+    if (myEvent.target.currentTime > 3) {
+      const player = <HTMLAudioElement>document.getElementById('audio-player');
+      console.log(myEvent.target.value)
+      player.pause()
+    }
+  }
+
+  onStartChange(myEvent: any) {
+    const player = <HTMLAudioElement>document.getElementById('audio-player');
+    console.log(myEvent.target.value)
+    player.currentTime = myEvent.target.value
   }
 
 }
