@@ -15,13 +15,11 @@ export class PodcastUrlComponent {
   ) { }
 
   title = 'ng-audio-cutter';
-  link = ""
-  start= ''
-  end = ''
+  url = ""
 
   onUrlButtonClick() {
 
-    this.httpClient.get(this.link, { responseType: 'blob' })
+    this.httpClient.get(this.url, { responseType: 'blob' })
       .subscribe(response => {
         const a = document.createElement("a");
         document.body.appendChild(a);
@@ -40,23 +38,7 @@ export class PodcastUrlComponent {
     const myUrl: string = myEvent.target.value;
     this.scraperService.parse_episode_url(myUrl)
       .subscribe(data => {
-        this.link = data
+        this.url = data
       });
   }
-
-  timeUpdate(myEvent: any) {
-    console.log(myEvent)
-    if (myEvent.target.currentTime > 3) {
-      const player = <HTMLAudioElement>document.getElementById('audio-player');
-      console.log(myEvent.target.value)
-      player.pause()
-    }
-  }
-
-  onStartChange(myEvent: any) {
-    const player = <HTMLAudioElement>document.getElementById('audio-player');
-    console.log(myEvent.target.value)
-    player.currentTime = myEvent.target.value
-  }
-
 }
