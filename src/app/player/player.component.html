@@ -1,0 +1,11 @@
+<p>player works!</p>
+<div style="margin-top: 20px;">
+    <audio id="audio-player" controls [src]="url" (timeupdate)="timeUpdate($event)">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</div>
+<div>
+    <input type="number" (input)="onStartChange($event)" aria-label="start">
+    <input type="number" aria-label="end">
+</div>

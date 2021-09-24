@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LocalFileComponent } from './local-file/local-file.component';
 import { PodcastUrlComponent } from './podcast-url/podcast-url.component';
 import { HomeComponent } from './home/home.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocalFileComponent,
     PodcastUrlComponent,
-    HomeComponent
+    HomeComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
