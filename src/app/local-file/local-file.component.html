@@ -4,9 +4,7 @@
             Local
     </button>
 </div>
-<div style="margin-top: 20px;">
-    <audio controls [src]="local_url">
-            Your browser does not support the
-            <code>audio</code> element.
-    </audio>
+
+<div *ngIf="local_url">
+    <app-player [url]="local_url"></app-player>
 </div>
