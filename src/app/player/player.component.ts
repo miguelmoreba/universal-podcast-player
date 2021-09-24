@@ -10,6 +10,8 @@ export class PlayerComponent {
   @Input() url = '';
   start= ''
   end = ''
+  duration = 0;
+  current = 0;
 
   constructor() { }
 
@@ -28,5 +30,11 @@ export class PlayerComponent {
     player.currentTime = myEvent.target.value
   }
 
+  onInputChange(myEvent: any) {
+    this.current = myEvent.target.value
+  }
 
+  setDuration(myEvent: any) {
+    this.duration = Math.round(myEvent.currentTarget.duration);
+  }
 }

@@ -1,10 +1,14 @@
 <div style="margin-top: 20px;">
-    <audio id="audio-player" controls [src]="url" (timeupdate)="timeUpdate($event)">
+    <audio id="audio-player" controls [src]="url" (timeupdate)="timeUpdate($event)" (loadedmetadata)="setDuration($event)">
             Your browser does not support the
             <code>audio</code> element.
     </audio>
 </div>
-<div>
-    <input type="number" (input)="onStartChange($event)" aria-label="start">
-    <input type="number" aria-label="end">
+<div *ngIf="duration > 100">
+    <input type="range" id="start" name="start"
+           min="0" [max]="duration" (input)="onInputChange($event)">
+    <label for="start">Start</label>
 </div>
+
+  {{duration}}
+  {{ current * 1000 | date:'mm:ss' }}
