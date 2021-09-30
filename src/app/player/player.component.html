@@ -6,9 +6,17 @@
 </div>
 <div *ngIf="duration > 100">
     <input type="range" id="start" name="start"
-           min="0" [max]="duration" (input)="onInputChange($event)">
+           min="0" [max]="duration" (input)="onInputCurrentLow($event)">
     <label for="start">Start</label>
 </div>
 
   {{duration}}
-  {{ current * 1000 | date:'mm:ss' }}
+  {{ currentLow * 1000 | date:'mm:ss' }}
+
+  <div *ngIf="duration > 100">
+    <input type="range" id="end" name="end"
+           min="0" [max]="duration" (input)="onInputCurrentHigh($event)">
+    <label for="end">End</label>
+</div>
+
+{{ currentHigh * 1000 | date:'mm:ss' }}

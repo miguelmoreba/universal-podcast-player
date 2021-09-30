@@ -11,8 +11,8 @@ export class PlayerComponent {
   start= ''
   end = ''
   duration = 0;
-  current = 0;
-
+  currentLow = 0;
+  currentHigh = 0;
   constructor() { }
 
   timeUpdate(myEvent: any) {
@@ -30,11 +30,25 @@ export class PlayerComponent {
     player.currentTime = myEvent.target.value
   }
 
-  onInputChange(myEvent: any) {
-    this.current = myEvent.target.value
+  onInputCurrentLow(myEvent: any) {
+    // if (myEvent.target.value > this.currentHigh - 3){
+    //   return;
+    // }
+    this.currentLow = myEvent.target.value
   }
 
   setDuration(myEvent: any) {
     this.duration = Math.round(myEvent.currentTarget.duration);
+    this.currentHigh = this.duration
+  }
+
+  onInputCurrentHigh(myEvent: any) {
+    console.log(typeof myEvent.target.value)
+    // if (myEvent.target.value < this.currentLow + 3){
+    //   const input = <HTMLInputElement>document.getElementById('end')
+    //   input.value = String(this.currentHigh)
+    //   return;
+    // }
+    this.currentHigh = myEvent.target.value
   }
 }
