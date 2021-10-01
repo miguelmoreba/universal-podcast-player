@@ -31,10 +31,12 @@ export class PlayerComponent {
   }
 
   onInputCurrentLow(myEvent: any) {
+    console.log(myEvent.target.value)
+
     // if (myEvent.target.value > this.currentHigh - 3){
     //   return;
     // }
-    this.currentLow = myEvent.target.value
+    this.currentLow = parseInt(myEvent.target.value)
   }
 
   setDuration(myEvent: any) {
@@ -43,12 +45,13 @@ export class PlayerComponent {
   }
 
   onInputCurrentHigh(myEvent: any) {
-    console.log(typeof myEvent.target.value)
-    // if (myEvent.target.value < this.currentLow + 3){
-    //   const input = <HTMLInputElement>document.getElementById('end')
-    //   input.value = String(this.currentHigh)
-    //   return;
-    // }
-    this.currentHigh = myEvent.target.value
+    console.log(myEvent.target.value)
+    const value = parseInt(myEvent.target.value) 
+    if (value < this.currentLow + 3){
+      const input = <HTMLInputElement>document.getElementById('end')
+      input.value = String(this.currentHigh)
+      return;
+    }
+    this.currentHigh = value
   }
 }
