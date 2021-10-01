@@ -17,7 +17,7 @@ export class PlayerComponent {
 
   timeUpdate(myEvent: any) {
     console.log(myEvent)
-    if (myEvent.target.currentTime > 3) {
+    if (myEvent.target.currentTime > this.currentHigh) {
       const player = <HTMLAudioElement>document.getElementById('audio-player');
       console.log(myEvent.target.value)
       player.pause()
