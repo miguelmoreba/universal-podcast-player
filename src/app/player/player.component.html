@@ -1,22 +1,30 @@
-<div style="margin-top: 20px;">
-    <audio id="audio-player" controls [src]="url" (timeupdate)="timeUpdate($event)" (loadedmetadata)="setDuration($event)">
+<div class="box">
+
+    <div style="margin-top: 20px;" class="flex-element">
+        <audio id="audio-player" controls [src]="url" class="slider"
+            (timeupdate)="timeUpdate($event)"
+            (loadedmetadata)="setDuration($event)">
             Your browser does not support the
             <code>audio</code> element.
-    </audio>
-</div>
-<div *ngIf="duration > 100">
-    <input type="range" id="start" name="start"
-           min="0" [max]="duration" (change)="onChangeCurrentLow($event)" (input)="onInputCurrentLow($event)">
-    <label for="start">Start</label>
-</div>
+        </audio>
+    </div>
+    <div class="flex-element">
+        <label for="start">Start</label>
+        <input type="range" id="start" name="start" class="slider"
+            min="0" [max]="duration" (change)="onChangeCurrentLow($event)"
+            (input)="onInputCurrentLow($event)">
+    </div>
 
-  {{duration}}
-  {{ inputCurrentLow * 1000 | date:'mm:ss' }}
+    <!-- {{duration}} -->
+    {{ inputCurrentLow * 1000 | date:'mm:ss' }}
 
-  <div *ngIf="duration > 100">
-    <input type="range" id="end" name="end"
-           min="0" [max]="duration" (change)="onChangeCurrentHigh($event)" (input)="onInputCurrentHigh($event)">
-    <label for="end">End</label>
+    <div class="flex-element">
+        <label for="end">End</label>
+        <input type="range" id="end" name="end" class="slider"
+            min="0" [max]="duration" (change)="onChangeCurrentHigh($event)"
+            (input)="onInputCurrentHigh($event)">
+    </div>
+
+    {{ inputCurrentHigh * 1000 | date:'mm:ss' }}
+
 </div>
-
-{{ inputCurrentHigh * 1000 | date:'mm:ss' }}
