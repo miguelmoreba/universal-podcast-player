@@ -1,6 +1,6 @@
 <div style="margin-top: 20px;">
     Url
-    <input type="text" (input)="onUrlInput($event)">
+    <input type="text" id="url-input" [ngModel]="url">
     <button (click)="onUrlButtonClick()">
             Download
     </button>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ScraperService } from '../services/scraper.service';
 
 @Component({
@@ -11,11 +12,33 @@ export class PodcastUrlComponent {
 
   constructor(
     private httpClient: HttpClient,
-    private scraperService: ScraperService
-  ) { }
+    private scraperService: ScraperService,
+    private route: ActivatedRoute
+  ) {
+    
+  };
+
 
   title = 'ng-audio-cutter';
-  url = ""
+  _url = ""
+
+  get url(): string{
+    return this._url;
+  }
+
+  set url(url: string) {
+    this.scraperService.parse_episode_url(url)
+      .subscribe(data => {
+        this._url = data
+      });
+  }
+
+  ngOnInit(): void {
+    const myUrl = this.route.snapshot.queryParams['url']
+    if (myUrl !== null) {
+      this.url = myUrl
+    };
+  }
 
   onUrlButtonClick() {
 
@@ -31,14 +54,5 @@ export class PodcastUrlComponent {
         window.URL.revokeObjectURL(url);
       }
       );
-  }
-
-  onUrlInput(myEvent: any) {
-    console.log(myEvent.target.value)
-    const myUrl: string = myEvent.target.value;
-    this.scraperService.parse_episode_url(myUrl)
-      .subscribe(data => {
-        this.url = data
-      });
   }
 }
