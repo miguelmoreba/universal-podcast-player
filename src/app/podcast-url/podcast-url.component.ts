@@ -35,7 +35,7 @@ export class PodcastUrlComponent {
 
   ngOnInit(): void {
     const myUrl = this.route.snapshot.queryParams['url']
-    if (myUrl !== null) {
+    if (myUrl) {
       this.url = myUrl
     };
   }
