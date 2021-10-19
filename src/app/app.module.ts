@@ -9,6 +9,7 @@ import { LocalFileComponent } from './local-file/local-file.component';
 import { PodcastUrlComponent } from './podcast-url/podcast-url.component';
 import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
+import { CutterComponent } from './cutter/cutter.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PlayerComponent } from './player/player.component';
     LocalFileComponent,
     PodcastUrlComponent,
     HomeComponent,
-    PlayerComponent
+    PlayerComponent,
+    CutterComponent
   ],
   imports: [
     BrowserModule,
