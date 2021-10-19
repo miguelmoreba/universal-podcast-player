@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+.box {
+    display: flex;
+    max-width: 400px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.flex-element {
+    margin-top: 10px;
+    width: 100%;
+    // flex-basis: 900px;
+}
