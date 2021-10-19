@@ -1,7 +1,7 @@
 <div class="box">
 
     <div style="margin-top: 20px;" class="flex-element">
-        <audio id="audio-player" controls [src]="url" class="slider"
+        <audio #audio_player id="audio-player" controls [src]="url" class="slider"
             (timeupdate)="timeUpdate($event)"
             (loadedmetadata)="setDuration($event)">
             Your browser does not support the
@@ -9,11 +9,21 @@
         </audio>
     </div>
 
-
     <!-- {{ inputCurrentHigh * 1000 | date:'mm:ss' }} -->
     <div class="flex-element">
         <button (click)="onShare()">
             Share
         </button>
+    </div>
+    <div class="flex-element">
+        <button (click)="onPlayPause()">
+            Play/Pause
+        </button>
+    </div>
+    <div class="flex-element">
+        <input type="range" id="episode" name="episode" class="slider"
+            min="0"
+            [max]="duration"
+        >
     </div>
 </div>
