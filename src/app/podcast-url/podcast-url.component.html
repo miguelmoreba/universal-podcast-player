@@ -6,9 +6,9 @@
                 Download
         </button>
     </div>
-    
+
     <div *ngIf="url" class="flex-element">
-        <app-player [url]="url" [originalUrl]="originalUrl"></app-player>
+        <app-player [url]="url" [originalUrl]="originalUrl" [start]="startTime"></app-player>
     </div>
 </div>
 

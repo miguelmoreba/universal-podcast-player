@@ -22,6 +22,7 @@ export class PodcastUrlComponent {
   private _url = "";
   title = 'ng-audio-cutter';
   private _originalUrl = "";
+  startTime = 0;
 
   get url(): string{
     return this._url;
@@ -40,10 +41,14 @@ export class PodcastUrlComponent {
   }
 
   ngOnInit(): void {
-    const myUrl = this.route.snapshot.queryParams['url']
+    const myUrl = this.route.snapshot.queryParams['url'];
     if (myUrl) {
       this.originalUrl = myUrl
     };
+    const startTime = this.route.snapshot.queryParams['start'];
+    if (startTime) {
+      this.startTime = +startTime;
+    }
   }
 
   onUrlButtonClick() {
