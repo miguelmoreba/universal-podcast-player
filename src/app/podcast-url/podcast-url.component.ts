@@ -33,6 +33,10 @@ export class PodcastUrlComponent {
       });
   }
 
+  onUrlChange(event: any){
+    this.url = event.target.value;
+  }
+
   ngOnInit(): void {
     const myUrl = this.route.snapshot.queryParams['url']
     if (myUrl) {
