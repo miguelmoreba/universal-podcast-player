@@ -1,14 +1,14 @@
 <div class="box">
     <div style="margin-top: 20px;">
         Url
-        <input type="text" id="url-input" [ngModel]="url" (input)="onUrlChange($event)">
+        <input type="text" id="url-input" [(ngModel)]="originalUrl">
         <button (click)="onUrlButtonClick()">
                 Download
         </button>
     </div>
     
     <div *ngIf="url" class="flex-element">
-        <app-player [url]="url"></app-player>
+        <app-player [url]="url" [originalUrl]="originalUrl"></app-player>
     </div>
 </div>
 

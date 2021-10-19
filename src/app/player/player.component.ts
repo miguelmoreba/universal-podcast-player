@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class PlayerComponent {
 
   @Input() url = '';
+  @Input() originalUrl = '';
   start= ''
   end = ''
   duration = 0;
@@ -21,17 +22,15 @@ export class PlayerComponent {
   }
 
   timeUpdate(myEvent: any) {
-    console.log(myEvent)
-    if (myEvent.target.currentTime > this.currentHigh) {
-      const player = <HTMLAudioElement>document.getElementById('audio-player');
-      console.log(myEvent.target.value)
-      player.pause()
-    }
+    // if (myEvent.target.currentTime > this.currentHigh) {
+    //   const player = <HTMLAudioElement>document.getElementById('audio-player');
+    //   player.pause()
+    // }
   }
 
   onStartChange(myEvent: any) {
     const player = <HTMLAudioElement>document.getElementById('audio-player');
-    console.log(myEvent.target.value)
+    // console.log(myEvent.target.value)
     player.currentTime = myEvent.target.value
   }
 
@@ -47,7 +46,7 @@ export class PlayerComponent {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([], {queryParams:
       {
-        url: 'https://pca.st/f9dyfuer',
+        url: this.originalUrl,
         start: 5,
         end: 20
       }

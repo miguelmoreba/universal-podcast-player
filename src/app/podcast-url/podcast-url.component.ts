@@ -19,28 +19,30 @@ export class PodcastUrlComponent {
   };
 
 
+  private _url = "";
   title = 'ng-audio-cutter';
-  _url = ""
+  private _originalUrl = "";
 
   get url(): string{
     return this._url;
   }
 
-  set url(url: string) {
+  set originalUrl(url: string) {
+    this._originalUrl = url;
     this.scraperService.parse_episode_url(url)
       .subscribe(data => {
-        this._url = data
+        this._url = data;
       });
   }
 
-  onUrlChange(event: any){
-    this.url = event.target.value;
+  get originalUrl() {
+    return this._originalUrl;
   }
 
   ngOnInit(): void {
     const myUrl = this.route.snapshot.queryParams['url']
     if (myUrl) {
-      this.url = myUrl
+      this.originalUrl = myUrl
     };
   }
 
