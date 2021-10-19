@@ -48,6 +48,7 @@ export class PlayerComponent implements OnInit {
   }
 
   onShare(){
+    const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
@@ -55,8 +56,7 @@ export class PlayerComponent implements OnInit {
     this.router.navigate([], {queryParams:
       {
         url: this.originalUrl,
-        start: 5,
-        end: 20
+        start: player.currentTime
       }
     });
   }
