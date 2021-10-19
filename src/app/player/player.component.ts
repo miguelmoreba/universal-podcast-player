@@ -10,8 +10,7 @@ export class PlayerComponent implements OnInit {
 
   @Input() url = '';
   @Input() originalUrl = '';
-  start= ''
-  end = ''
+  @Input() start= ''
   duration = 0;
   currentHigh = 0;
   @ViewChild('audio_player') audioPlayer: any;
@@ -22,8 +21,8 @@ export class PlayerComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    const player = <HTMLAudioElement>document.getElementById('audio-player');
-    player.controls = false;
+    // const player = <HTMLAudioElement>document.getElementById('audio-player');
+    // player.controls = false;
   }
 
   timeUpdate(myEvent: any) {
