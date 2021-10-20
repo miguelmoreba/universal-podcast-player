@@ -18,9 +18,7 @@ export class PodcastUrlComponent {
     
   };
 
-
   private _url = "";
-  title = 'ng-audio-cutter';
   private _originalUrl = "";
   startTime = 0;
 
