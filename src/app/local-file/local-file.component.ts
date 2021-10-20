@@ -21,17 +21,17 @@ export class LocalFileComponent implements OnInit {
 
   onInputChange(myEvent: any) {
     if (myEvent.target.files && myEvent.target.files[0]) {
-      let file = myEvent.target.files[0];
-      let fr = new FileReader();
+      const file = myEvent.target.files[0];
+      const fr = new FileReader();
       console.log("I get to here too")
       fr.onload = (event: any) => {
         let base64 = event.target.result
-        let BASE64_MARKER = ';base64,';
-        let base64Index = event.target.result.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+        const BASE64_MARKER = ';base64,';
+        const base64Index = event.target.result.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
         base64 = event.target.result.substring(base64Index);
-        let raw = window.atob(base64);
-        let rawLength = raw.length;
-        let array = new Uint8Array(new ArrayBuffer(rawLength));
+        const raw = window.atob(base64);
+        const rawLength = raw.length;
+        const array = new Uint8Array(new ArrayBuffer(rawLength));
 
         for (let i = 0; i < rawLength; i++) {
           array[i] = raw.charCodeAt(i);
