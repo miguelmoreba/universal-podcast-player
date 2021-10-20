@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -6,18 +6,13 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './local-file.component.html',
   styleUrls: ['./local-file.component.scss']
 })
-export class LocalFileComponent implements OnInit {
+export class LocalFileComponent {
 
   local_url: any;
 
   constructor(
     private sanitizer: DomSanitizer
-  ) { 
-
-  }
-
-  ngOnInit(): void {
-  }
+  ) { }
 
   onInputChange(myEvent: any) {
     if (myEvent.target.files && myEvent.target.files[0]) {
