@@ -1,0 +1,30 @@
+.playback-button {
+    box-sizing: border-box;
+    height: 74px;
+
+    border-color: transparent transparent transparent #202020;
+    background-color: white;
+    transition: 100ms all ease;
+    will-change: border-width;
+    cursor: pointer;
+
+    // play state
+    border-style: solid;
+    border-width: 37px 0 37px 60px;
+
+    // paused state
+    &.pause {
+        border-style: double;
+        border-width: 0px 0 0px 60px;
+    }
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+.playback-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

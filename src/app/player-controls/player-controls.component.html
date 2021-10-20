@@ -1,0 +1,10 @@
+ <div class="flex-element playback-wrapper">
+    <button (click)="onPlayPause()" class="playback-button" [ngClass]="paused ? 'play' : 'pause'">
+    </button>
+</div>
+<div class="flex-element">
+    <input type="range" id="episode" name="episode" class="slider"
+        min="0"
+        [max]="duration"
+        class="progress-bar">
+</div>

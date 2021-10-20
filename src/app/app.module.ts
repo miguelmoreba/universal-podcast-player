@@ -10,6 +10,7 @@ import { PodcastUrlComponent } from './podcast-url/podcast-url.component';
 import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
 import { CutterComponent } from './cutter/cutter.component';
+import { PlayerControlsComponent } from './player-controls/player-controls.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CutterComponent } from './cutter/cutter.component';
     PodcastUrlComponent,
     HomeComponent,
     PlayerComponent,
-    CutterComponent
+    CutterComponent,
+    PlayerControlsComponent
   ],
   imports: [
     BrowserModule,
