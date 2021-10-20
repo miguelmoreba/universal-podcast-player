@@ -11,17 +11,18 @@ export class PlayerComponent implements OnInit {
   @Input() url = '';
   @Input() originalUrl = '';
   @Input() start = 0;
+  @ViewChild('audio_player') audioPlayer: any;
   duration = 0;
   currentHigh = 0;
-  @ViewChild('audio_player') audioPlayer: any;
 
   constructor(
     private readonly router: Router
-  ){
+  ) {
 
   }
+
   ngOnInit(): void {
-    const player = <HTMLAudioElement>document.getElementById('audio-player');
+    const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     player.currentTime = this.start;
   }
 
@@ -33,7 +34,7 @@ export class PlayerComponent implements OnInit {
   }
 
   onStartChange(myEvent: any) {
-    const player = <HTMLAudioElement>document.getElementById('audio-player');
+    const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     player.currentTime = myEvent.target.value
   }
 
@@ -47,13 +48,14 @@ export class PlayerComponent implements OnInit {
     player.paused ? player.play() : player.pause()
   }
 
-  onShare(){
+  onShare() {
     const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([], {queryParams:
+    this.router.navigate([], {
+      queryParams:
       {
         url: this.originalUrl,
         start: player.currentTime
