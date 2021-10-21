@@ -27,10 +27,12 @@ export class PlayerComponent implements OnInit {
   }
 
   timeUpdate(myEvent: any) {
+    console.log(myEvent)
     // if (myEvent.target.currentTime > this.currentHigh) {
     //   const player = <HTMLAudioElement>document.getElementById('audio-player');
     //   player.pause()
     // }
+
   }
 
   onStartChange(myEvent: any) {

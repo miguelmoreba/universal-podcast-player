@@ -15,5 +15,5 @@
             Share
         </button>
     </div>
-    <!-- <app-player-controls class="flex-element"></app-player-controls> -->
+    <app-player-controls class="flex-element" [duration]="duration" (sliderChanged)="timeUpdate($event)"></app-player-controls>
 </div>

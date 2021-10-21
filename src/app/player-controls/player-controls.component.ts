@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-player-controls',
@@ -9,8 +9,10 @@ export class PlayerControlsComponent implements OnInit {
 
   constructor() { }
 
-  duration = 2000;
-  paused = true
+  @Input() duration = 2000;
+  @Output() sliderChanged = new EventEmitter();
+  paused = true;
+  current = 0;
 
   ngOnInit(): void {
   }
@@ -19,6 +21,10 @@ export class PlayerControlsComponent implements OnInit {
     // const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     // player.paused ? player.play() : player.pause()
     this.paused = !this.paused
+  }
+
+  onSliderChange() {
+    this.sliderChanged.emit(this.current)
   }
 
 }

@@ -4,7 +4,11 @@
 </div>
 <div class="flex-element">
     <input type="range" id="episode" name="episode" class="slider"
+        (change)="onSliderChange()"
+        [(ngModel)]="current"
         min="0"
         [max]="duration"
         class="progress-bar">
 </div>
+{{ current * 1000 | date:'mm:ss' }}
+{{ duration * 1000 | date:'mm:ss' }}
