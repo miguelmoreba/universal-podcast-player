@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements AfterViewInit {
 
   @Input() url = '';
   @Input() originalUrl = '';
@@ -21,10 +21,9 @@ export class PlayerComponent implements OnInit {
   ) {
 
   }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
-    player.currentTime = this.start;
+    player.controls = false;
   }
 
   timeUpdate(myEvent: any) {
