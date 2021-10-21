@@ -12,15 +12,15 @@ export class PlayerControlsComponent implements OnInit {
   @Input() duration = 2000;
   @Input() current = 0;
   @Output() sliderChanged = new EventEmitter();
-  paused = true;
+  @Output() playPauseClick = new EventEmitter();
+  @Input() paused = true;
+
 
   ngOnInit(): void {
   }
 
   onPlayPause() {
-    // const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
-    // player.paused ? player.play() : player.pause()
-    this.paused = !this.paused
+    this.playPauseClick.emit();
   }
 
   onSliderChange() {

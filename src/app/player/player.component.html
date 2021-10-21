@@ -14,5 +14,10 @@
             Share
         </button>
     </div>
-    <app-player-controls class="flex-element" [duration]="duration" [current]="current" (sliderChanged)="timeUpdateThroughSlider($event)"></app-player-controls>
+    <app-player-controls class="flex-element"
+        [duration]="duration"
+        [current]="current"
+        [paused]="paused"
+        (sliderChanged)="timeUpdateThroughSlider($event)"
+        (playPauseClick)="onPlayPause()"></app-player-controls>
 </div>

@@ -14,6 +14,7 @@ export class PlayerComponent implements OnInit {
   @ViewChild('audio_player') audioPlayer: any;
   duration = 0;
   current = 0;
+  paused = true;
 
   constructor(
     private readonly router: Router
@@ -48,7 +49,13 @@ export class PlayerComponent implements OnInit {
 
   onPlayPause() {
     const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
-    player.paused ? player.play() : player.pause()
+    if(player.paused) {
+      player.play();
+      this.paused = false;
+    } else {
+      player.pause();
+      this.paused = true;
+    }
   }
 
   onShare() {
