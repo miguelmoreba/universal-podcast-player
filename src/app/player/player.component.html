@@ -9,11 +9,10 @@
         </audio>
     </div>
 
-    <!-- {{ inputCurrentHigh * 1000 | date:'mm:ss' }} -->
     <div class="flex-element">
         <button (click)="onShare()">
             Share
         </button>
     </div>
-    <app-player-controls class="flex-element" [duration]="duration" (sliderChanged)="timeUpdate($event)"></app-player-controls>
+    <app-player-controls class="flex-element" [duration]="duration" [current]="current" (sliderChanged)="timeUpdateThroughSlider($event)"></app-player-controls>
 </div>

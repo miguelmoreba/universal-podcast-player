@@ -13,7 +13,7 @@ export class PlayerComponent implements OnInit {
   @Input() start = 0;
   @ViewChild('audio_player') audioPlayer: any;
   duration = 0;
-  currentHigh = 0;
+  current = 0;
 
   constructor(
     private readonly router: Router
@@ -27,12 +27,14 @@ export class PlayerComponent implements OnInit {
   }
 
   timeUpdate(myEvent: any) {
-    console.log(myEvent)
-    // if (myEvent.target.currentTime > this.currentHigh) {
-    //   const player = <HTMLAudioElement>document.getElementById('audio-player');
-    //   player.pause()
-    // }
+    console.log(myEvent.target.currentTime);
+    this.current = myEvent.target.currentTime;
+  }
 
+  timeUpdateThroughSlider(myEvent: any) {
+    console.log(myEvent)
+    const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
+    player.currentTime = myEvent;
   }
 
   onStartChange(myEvent: any) {
@@ -42,7 +44,6 @@ export class PlayerComponent implements OnInit {
 
   setDuration(myEvent: any) {
     this.duration = Math.round(myEvent.currentTarget.duration);
-    this.currentHigh = this.duration
   }
 
   onPlayPause() {

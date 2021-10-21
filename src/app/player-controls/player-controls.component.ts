@@ -10,9 +10,9 @@ export class PlayerControlsComponent implements OnInit {
   constructor() { }
 
   @Input() duration = 2000;
+  @Input() current = 0;
   @Output() sliderChanged = new EventEmitter();
   paused = true;
-  current = 0;
 
   ngOnInit(): void {
   }
