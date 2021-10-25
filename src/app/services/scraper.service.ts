@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as cheerio from 'cheerio';
 import { Observable, of } from 'rxjs';
@@ -61,5 +61,18 @@ export class ScraperService {
           podcastName: title.substring(title.lastIndexOf('- ') + 2, title.lastIndexOf(' |'))
         }
       }));
+  }
+
+  getItunesInfo(podcastEpisode: string, podcastName: string) {
+
+    let params = new HttpParams();
+
+    params = params.append('entity', 'podcastEpisode');
+    params = params.append('term', podcastEpisode);
+
+    this.httpClient.get("https://itunes.apple.com/search", { params })
+      .pipe(map((response: any) => {
+        return response.data.results.find((episode: any) => episode.collectionName === podcastName)
+      }))
   }
 }
