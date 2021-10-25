@@ -48,4 +48,18 @@ export class ScraperService {
         return (<any>Object.values(parsed)[0]).data.attributes.assetUrl;
       }))
   }
+
+  getEpisodeNameAndPodcastNameFromSpotify(url: string) {
+    return this.httpClient.get(url, { responseType: 'text' })
+      .pipe(map((response: any) => {
+        const $ = cheerio.load(response.data);
+
+        const title = $('title').text();
+
+        return {
+          podcastEpisodeTitle: title.substring(0, title.lastIndexOf(' -')),
+          podcastName: title.substring(title.lastIndexOf('- ') + 2, title.lastIndexOf(' |'))
+        }
+      }));
+  }
 }
