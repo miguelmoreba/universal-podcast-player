@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { mergeMap } from 'rxjs/operators';
+import { ITunesResponse } from '../interfaces/itunes.interface';
 import { ScraperService } from '../services/scraper.service';
 
 @Component({
@@ -21,6 +23,7 @@ export class PodcastUrlComponent {
   private _url = "";
   private _originalUrl = "";
   startTime = 0;
+  episode: any;
 
   get url(): string{
     return this._url;
@@ -31,6 +34,12 @@ export class PodcastUrlComponent {
     this.scraperService.parse_episode_url(url)
       .subscribe(data => {
         this._url = data;
+      });
+    this.scraperService.getEpisodeNameAndPodcastName(url)
+      .pipe(
+        mergeMap((episodeKeyPair: any) => this.scraperService.getItunesInfo(episodeKeyPair.podcastEpisodeTitle, episodeKeyPair.podcastName))
+      ).subscribe((episode: ITunesResponse) => {
+        this.episode = episode;
       });
   }
 
