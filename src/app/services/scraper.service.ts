@@ -34,6 +34,20 @@ export class ScraperService {
       }));
   }
 
+  getEpisodeNameAndPocastNameFromPocketCasts(url: string): Observable<object> {
+    return this.httpClient.get(url, {responseType: 'text'})
+      .pipe(map((response: any) => {
+        const $ = cheerio.load(response.data);
+
+        const title = $('title').text();
+
+        return {
+          podcastEpisodeTitle: title.substring(0, title.lastIndexOf(' -')),
+          podcastName: title.substring(title.lastIndexOf('- ') + 2, title.length)
+        }
+      }));
+  }
+
   get_episode_url_from_itunes(url: string): Observable<string> {
     return this.httpClient.get(url, { responseType: 'text' })
       .pipe(map((response: any) => {
@@ -49,7 +63,7 @@ export class ScraperService {
       }))
   }
 
-  getEpisodeNameAndPodcastNameFromSpotify(url: string) {
+  getEpisodeNameAndPodcastNameFromSpotify(url: string): Observable<object> {
     return this.httpClient.get(url, { responseType: 'text' })
       .pipe(map((response: any) => {
         const $ = cheerio.load(response.data);
@@ -74,5 +88,11 @@ export class ScraperService {
       .pipe(map((response: any) => {
         return response.data.results.find((episode: any) => episode.collectionName === podcastName)
       }))
+  }
+
+  sanitise(encodedString: string) {
+    const tmpElement = document.createElement('span');
+    tmpElement.innerHTML = encodedString;
+    return tmpElement.innerHTML;
   }
 }
