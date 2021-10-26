@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as cheerio from 'cheerio';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { ITunesResponse } from '../interfaces/itunes.interface';
 
 
 @Injectable({
@@ -47,7 +48,7 @@ export class ScraperService {
   getEpisodeNameAndPocastNameFromPocketCasts(url: string): Observable<object> {
     return this.httpClient.get(url, {responseType: 'text'})
       .pipe(map((response: any) => {
-        const $ = cheerio.load(response.data);
+        const $ = cheerio.load(response);
 
         const title = $('title').text();
 
@@ -101,17 +102,17 @@ export class ScraperService {
       }));
   }
 
-  getItunesInfo(podcastEpisode: string, podcastName: string) {
+  getItunesInfo(podcastEpisode: string, podcastName: string): Observable<any> {
 
     let params = new HttpParams();
 
     params = params.append('entity', 'podcastEpisode');
     params = params.append('term', podcastEpisode);
 
-    this.httpClient.get("https://itunes.apple.com/search", { params })
+    return this.httpClient.get("https://itunes.apple.com/search", { params })
       .pipe(map((response: any) => {
-        return response.data.results.find((episode: any) => episode.collectionName === podcastName)
-      }))
+        return response.results.find((episode: ITunesResponse) => episode.collectionName === podcastName);
+      }));
   }
 
   sanitise(encodedString: string) {
