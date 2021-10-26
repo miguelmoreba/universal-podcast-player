@@ -9,6 +9,16 @@ import { map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ScraperService {
+  getEpisodeNameAndPodcastName(url: string) {
+    if (url.includes("pca.st")) {
+      return this.getEpisodeNameAndPocastNameFromPocketCasts(url)
+    } else if (url.includes("podcasts.apple")) {
+      return this.getEpisodeNameAndPodcastNameFromITunes(url)
+    } else if (url.includes("spotify")) {
+      return this.getEpisodeNameAndPodcastNameFromSpotify(url)
+    }
+    throw new Error('Method not implemented');
+  }
 
   constructor(private httpClient: HttpClient) {
 
