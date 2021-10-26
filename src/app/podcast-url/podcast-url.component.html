@@ -8,7 +8,12 @@
     </div>
 
     <div *ngIf="url" class="flex-element">
+        <div class="box">
+            <img [src]="episode?.artworkUrl600" alt="" class="podcast-image flex-element">
+        </div>
         <app-player [url]="url" [originalUrl]="originalUrl" [start]="startTime"></app-player>
+        {{episode?.trackName}}
+        {{episode?.collectionName}}
     </div>
 </div>
 
