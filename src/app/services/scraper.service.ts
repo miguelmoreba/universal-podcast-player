@@ -52,7 +52,6 @@ export class ScraperService {
     return this.httpClient.get(url, { responseType: 'text' })
       .pipe(map((response: any) => {
 
-        console.log(response)
         const $ = cheerio.load(response);
 
         const myLink = (<any>$('#shoebox-ember-data-store').get()[0].children[0]).data;
@@ -60,7 +59,22 @@ export class ScraperService {
         const parsed = JSON.parse(myLink);
 
         return (<any>Object.values(parsed)[0]).data.attributes.assetUrl;
-      }))
+      }));
+  }
+
+  getEpisodeNameAndPodcastNameFromITunes(url: string): Observable<object> {
+    return this.httpClient.get(url, { responseType: 'text'})
+      .pipe(map((response: any) => {
+        const $ = cheerio.load(response.data);
+
+        const title = $('title').text();
+
+        return {
+          podcastEpisodeTitle: title.substring(title.indexOf(': ') + 2, title.indexOf(' on Apple Podcasts')),
+          podcastName: title.substring(0, title.indexOf(': '))
+        }
+
+      }));
   }
 
   getEpisodeNameAndPodcastNameFromSpotify(url: string): Observable<object> {
