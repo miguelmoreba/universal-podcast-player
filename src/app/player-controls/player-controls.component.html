@@ -9,6 +9,6 @@
         min="0"
         [max]="duration"
         class="progress-bar">
-</div>
-{{ current * 1000 | date:'mm:ss' }}
-{{ duration * 1000 | date:'mm:ss' }}
+</div>>
+{{ current * 1000 | hourminsec }}
+{{ duration * 1000 | hourminsec }}

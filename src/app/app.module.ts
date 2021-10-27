@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
 import { CutterComponent } from './cutter/cutter.component';
 import { PlayerControlsComponent } from './player-controls/player-controls.component';
+import { HourminsecPipe } from './pipes/hourminsec.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PlayerControlsComponent } from './player-controls/player-controls.compo
     HomeComponent,
     PlayerComponent,
     CutterComponent,
-    PlayerControlsComponent
+    PlayerControlsComponent,
+    HourminsecPipe
   ],
   imports: [
     BrowserModule,
