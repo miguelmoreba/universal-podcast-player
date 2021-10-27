@@ -11,9 +11,15 @@
         <div class="box">
             <img [src]="episode?.artworkUrl600" alt="" class="podcast-image flex-element">
         </div>
+        <div class="title-wrapper">
+            <div class="podcast-title">
+                {{episode?.trackName}}
+            </div>
+            <div class="podcast-name">
+                {{episode?.collectionName}}
+            </div>
+        </div>
         <app-player [url]="url" [originalUrl]="originalUrl" [start]="startTime"></app-player>
-        {{episode?.trackName}}
-        {{episode?.collectionName}}
     </div>
 </div>
 
