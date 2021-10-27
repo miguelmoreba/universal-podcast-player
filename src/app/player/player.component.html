@@ -2,6 +2,8 @@
 
     <div style="margin-top: 20px;" class="flex-element">
         <audio #audio_player id="audio-player" controls [src]="url" class="slider"
+            (play)="onAudioPlayEvent()"
+            (pause)="onAudioPauseEvent()"
             (timeupdate)="timeUpdate($event)"
             (loadedmetadata)="setDuration($event)">
             Your browser does not support the

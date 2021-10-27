@@ -57,6 +57,14 @@ export class PlayerComponent implements AfterViewInit {
     }
   }
 
+  onAudioPlayEvent() {
+    this.paused = false;
+  }
+
+  onAudioPauseEvent() {
+    this.paused = true;
+  }
+
   onShare() {
     const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
