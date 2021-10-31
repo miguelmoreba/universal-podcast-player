@@ -5,7 +5,7 @@
             (play)="onAudioPlayEvent()"
             (pause)="onAudioPauseEvent()"
             (timeupdate)="timeUpdate($event)"
-            (loadedmetadata)="setDuration($event)">
+            (loadedmetadata)="onLoadedMetadata($event)">
             Your browser does not support the
             <code>audio</code> element.
         </audio>

@@ -37,9 +37,15 @@ export class PlayerComponent implements AfterViewInit {
     player.currentTime = myEvent;
   }
 
-  onStartChange(myEvent: any) {
+  onStartChange() {
     const player = <HTMLAudioElement>this.audioPlayer.nativeElement;
-    player.currentTime = myEvent.target.value
+    player.currentTime = this.start;
+    this.current = this.start;
+  }
+
+  onLoadedMetadata(myEvent: any) {
+    this.onStartChange();
+    this.setDuration(myEvent);
   }
 
   setDuration(myEvent: any) {
